@@ -29,6 +29,7 @@ The following is the architecture of ELK Stack which shows the proper order of l
 <b>elk architecture</b>
 
 ## ELK with microservices
+
 All our microservices will push their respective logs to Logstash, which will use Elasticsearch to index them. The indexed logs can be consumed later by Kibana.
 We will use Logback as a logging framework.
 Logback offers a faster implementation , provides more options for configuration, and more flexibility in archiving old log files.
