@@ -1,7 +1,5 @@
 package com.maestro.app.ms.practice.prometheus.configuration;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import ch.qos.logback.classic.AsyncAppender;
 import ch.qos.logback.classic.LoggerContext;
@@ -14,44 +12,35 @@ import org.slf4j.LoggerFactory;
 import java.net.InetSocketAddress;
 
 @Configuration
-@EnableConfigurationProperties
-//@RefreshScope
 public class LoggingConfiguration {
     private static final String LOGSTASH_APPENDER_NAME = "LOGSTASH";
     private static final String ASYNC_LOGSTASH_APPENDER_NAME = "ASYNC_LOGSTASH";
     private final Logger LOG = LoggerFactory.getLogger(LoggingConfiguration.class);
     private final LoggerContext CONTEXT = (LoggerContext) LoggerFactory.getILoggerFactory();
 
-    private final String appName;
-    private final String logstashHost;
-    private final Integer logstashPort;
-    private final Integer logstashQueueSize;
+    private final String appName = System.getenv().getOrDefault("APP_LOGGING_NAME", "service-1");
+    private final String logstashHost = System.getenv().getOrDefault("APP_LOGGING_HOST", "localhost");
+    private final Integer logstashPort = Integer.parseInt(System.getenv().getOrDefault("APP_LOGGING_PORT", "5000"));
+    private final Integer queueSize = Integer.parseInt(System.getenv().getOrDefault("APP_LOGGING_QUEUE_SIZE", "512"));
 
-    public LoggingConfiguration(
-            @Value("${spring.application.name: service1}") String appName,
-            @Value("${logstash.host: 127.0.0.1}") String logstashHost,
-            @Value("${logstash.port: 5000}") Integer logstashPort,
-            @Value("${logstash.queue-size: 1024}") Integer logstashQueueSize) {
-        this.appName = appName;
-        this.logstashHost = logstashHost;
-        this.logstashPort = logstashPort;
-        this.logstashQueueSize = logstashQueueSize;
+    public LoggingConfiguration() {
+        LOG.info("Logstash-service: appName: {}", appName);
+        LOG.info("Logstash-service: {}:{}, {}", logstashHost, logstashPort, queueSize);
 
         addLogstashAppender(CONTEXT);
     }
+
     private void addLogstashAppender(LoggerContext context) {
         LOG.info("Initializing Logstash logging");
         LogstashTcpSocketAppender logstashAppender = new LogstashTcpSocketAppender();
         logstashAppender.setName(LOGSTASH_APPENDER_NAME);
         logstashAppender.setContext(context);
-        String customFields = "{\"servicename\":\"" + this.appName + "\"}";
+        String customFields = "{\"servicename\":\"" + appName + "\"}";
 // More documentation is available at: https://github.com/logstash/logstash-logback-encoder
         LogstashEncoder logstashEncoder = new LogstashEncoder();
 // Set the Logstash appender config
         logstashEncoder.setCustomFields(customFields);
-        logstashAppender.addDestinations(
-                new InetSocketAddress(this.logstashHost, this.logstashPort)
-        );
+        logstashAppender.addDestinations(new InetSocketAddress(logstashHost, logstashPort));
         ShortenedThrowableConverter throwableConverter = new ShortenedThrowableConverter();
         throwableConverter.setRootCauseFirst(true);
         logstashEncoder.setThrowableConverter(throwableConverter);
@@ -63,9 +52,10 @@ public class LoggingConfiguration {
         AsyncAppender asyncLogstashAppender = new AsyncAppender();
         asyncLogstashAppender.setContext(context);
         asyncLogstashAppender.setName(ASYNC_LOGSTASH_APPENDER_NAME);
-        asyncLogstashAppender.setQueueSize(this.logstashQueueSize);
+        asyncLogstashAppender.setQueueSize(queueSize);
         asyncLogstashAppender.addAppender(logstashAppender);
         asyncLogstashAppender.start();
+
         context.getLogger("ROOT").addAppender(asyncLogstashAppender);
     }
 }
