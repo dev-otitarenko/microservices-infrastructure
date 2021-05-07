@@ -1,0 +1,26 @@
+version: '2.3'
+
+services:
+  service1:
+    build:
+      context: ./ms-test-prometheus
+      dockerfile: Dockerfile
+    container_name: service1
+    hostname: service1
+    restart: always
+    ports:
+      - "8801:8801"
+    volumes:
+      - ./docker/service1/logs:/tmp/logs
+    environment:
+#      JAVA_OPTS: -Xmx100M -XX:MaxRAM=128M -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
+      app.telemetry.level: INFO
+      logstash.host: logstash
+      logstash.port: 5000
+      logstash.queue-size: 512
+  #    networks:
+  #      - app_net
+
+#networks:
+#  app_net:
+#    driver: bridge
