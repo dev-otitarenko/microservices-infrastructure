@@ -28,11 +28,26 @@ The following is the architecture of ELK Stack which shows the proper order of l
 ![Alt text](./docs/elk-architecture.png?raw=true "elk architecture")
 <b>elk architecture</b>
 
-## Elk with microservices
+## ELK with microservices
 All our microservices will push their respective logs to Logstash, which will use Elasticsearch to index them. The indexed logs can be consumed later by Kibana.
 We will use Logback as a logging framework.
 Logback offers a faster implementation , provides more options for configuration, and more flexibility in archiving old log files.
 
 ![Alt text](./docs/elk-logback.png?raw=true "elk logback")
 
-## Installation ELK
+## Installation ELK (folder ./elk)
+
+Start ELK:
+```sh
+$ docker-compose -f ./docker-compose.yml up -d --build
+```
+
+Stop ELK:
+```sh
+$ docker-compose -f ./docker-compose.yml stop
+```
+
+Remove ELK:
+```sh
+$ docker-compose -f ./docker-compose.yml rm
+```
