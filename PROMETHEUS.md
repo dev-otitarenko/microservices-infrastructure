@@ -1,8 +1,10 @@
 # Monitoring with Prometheus and Grafana
 
+![Alt text](./docs/prometheus-1.gif?raw=true "Prometheus General")
+
 As for now everything looks fine, but while working with such a complex architecture 
 we need to keep an eye on our system in case of a any potential failure.
-To do so , in this part we’re gonna see how to monitor,trace and observe the behaviour 
+To do so , in this part we’re going to learn how to monitor, trace and observe the behaviour 
 of our microservices using prometheus and grafana.
 
 ## What is prometheus ?
