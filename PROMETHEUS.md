@@ -7,6 +7,23 @@ we need to keep an eye on our system in case of a any potential failure.
 To do so , in this part we’re going to learn how to monitor, trace and observe the behaviour 
 of our microservices using prometheus and grafana.
 
+### Installing Prometheus/Grafana
+
+Start Prometheus/Grafana:
+```sh
+$ docker-compose -f ./docker-compose-monitor.yml up -d
+```
+
+Stop Prometheus/Grafana:
+```sh
+$ docker-compose -f ./docker-compose-monitor.yml stop
+```
+
+Remove Prometheus/Grafana:
+```sh
+$ docker-compose -f ./docker-compose-monitor.yml rm
+```
+
 ## What is prometheus ?
 
 Prometheus is an open source time-series database originally developed by SoundCloud. 
