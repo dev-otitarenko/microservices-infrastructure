@@ -5,6 +5,11 @@ services:
     build:
       context: ./ms-test-prometheus
       dockerfile: Dockerfile
+    environment:
+      APP_LOGGING_NAME: service_1
+      APP_LOGGING_HOST: logstash
+      APP_LOGGING_PORT: 5000
+      APP_LOGGING_QUEUE_SIZE: 512
     container_name: service1
     hostname: service1
     restart: always
@@ -12,15 +17,3 @@ services:
       - "8801:8801"
     volumes:
       - ./docker/service1/logs:/tmp/logs
-    environment:
-#      JAVA_OPTS: -Xmx100M -XX:MaxRAM=128M -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
-      app.telemetry.level: INFO
-      logstash.host: logstash
-      logstash.port: 5000
-      logstash.queue-size: 512
-  #    networks:
-  #      - app_net
-
-#networks:
-#  app_net:
-#    driver: bridge
