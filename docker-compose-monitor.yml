@@ -3,7 +3,7 @@ services:
   prometheus:
     image: prom/prometheus
     volumes:
-      - ./monitor/prometheus/:/etc/prometheus/
+      - ./monitoring/prometheus/:/etc/prometheus/
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
@@ -13,4 +13,4 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - ./monitor/config/provisioning/:/etc/grafana/provisioning/
+      - ./monitoring/config/provisioning/:/etc/grafana/provisioning/
