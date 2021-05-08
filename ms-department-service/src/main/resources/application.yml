@@ -2,6 +2,15 @@
 server:
   port: 8801
 
+# Spring conf
+spring:
+  datasource:
+    url: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
 # Actuator params
 management:
   endpoint:
