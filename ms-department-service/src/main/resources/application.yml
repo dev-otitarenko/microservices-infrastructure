@@ -1,0 +1,15 @@
+# Server config
+server:
+  port: 8801
+
+# Actuator params
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
