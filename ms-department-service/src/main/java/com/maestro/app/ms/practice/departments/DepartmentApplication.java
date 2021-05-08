@@ -1,4 +1,4 @@
-package com.maestro.app.ms.practice.prometheus;
+package com.maestro.app.ms.practice.departments;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

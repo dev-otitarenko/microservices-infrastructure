@@ -1,7 +1,7 @@
-package com.maestro.app.ms.practice.prometheus.services;
+package com.maestro.app.ms.practice.departments.services;
 
-import com.maestro.app.ms.practice.prometheus.entities.Department;
-import com.maestro.app.ms.practice.prometheus.repositories.DepartmentRepository;
+import com.maestro.app.ms.practice.departments.entities.Department;
+import com.maestro.app.ms.practice.departments.repositories.DepartmentRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

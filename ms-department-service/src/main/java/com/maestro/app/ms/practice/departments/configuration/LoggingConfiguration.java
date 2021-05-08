@@ -1,4 +1,4 @@
-package com.maestro.app.ms.practice.prometheus.configuration;
+package com.maestro.app.ms.practice.departments.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import ch.qos.logback.classic.AsyncAppender;

@@ -1,6 +1,6 @@
-package com.maestro.app.ms.practice.prometheus.configuration;
+package com.maestro.app.ms.practice.departments.configuration;
 
-import com.maestro.app.ms.practice.prometheus.services.DepartmentService;
+import com.maestro.app.ms.practice.departments.services.DepartmentService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

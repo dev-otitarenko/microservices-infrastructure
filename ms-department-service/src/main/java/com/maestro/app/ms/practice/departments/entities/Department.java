@@ -1,4 +1,4 @@
-package com.maestro.app.ms.practice.prometheus.entities;
+package com.maestro.app.ms.practice.departments.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
