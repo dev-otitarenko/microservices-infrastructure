@@ -3,7 +3,7 @@
 # remove all old unused images
 docker rmi $(docker images -a -q)
 
-cd ./ms-test-prometheus
+cd ./ms-department-service
 # compile
 mvn clean package -Dmaven.test.skip=true
 
