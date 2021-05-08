@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -31,6 +33,7 @@ public class DepartmentController {
     }
 
     @DeleteMapping("/dept/{id}")
+    @Transactional
     public void delete(@PathVariable Long id) {
         Department dept = deptService.get(id);
         if (dept != null)
@@ -38,12 +41,14 @@ public class DepartmentController {
     }
 
     @PutMapping("/dept")
-    public void create(@RequestBody Department dept) {
+    @Transactional
+    public void create(@RequestBody @Valid Department dept) {
         deptService.save(dept);
     }
 
     @PostMapping("/dept/{id}")
-    public void update(@PathVariable Long id, @RequestBody Department dept) {
+    @Transactional
+    public void update(@PathVariable Long id, @RequestBody @Valid Department dept) {
         dept.setId(id);
         deptService.save(dept);
     }
