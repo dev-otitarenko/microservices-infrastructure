@@ -18,7 +18,7 @@ public class LoggingConfiguration {
     private final Logger LOG = LoggerFactory.getLogger(LoggingConfiguration.class);
     private final LoggerContext CONTEXT = (LoggerContext) LoggerFactory.getILoggerFactory();
 
-    private final String appName = System.getenv().getOrDefault("APP_LOGGING_NAME", "service-1");
+    private final String appName = System.getenv().getOrDefault("APP_LOGGING_NAME", "ms-dept-service");
     private final String logstashHost = System.getenv().getOrDefault("APP_LOGGING_HOST", "localhost");
     private final Integer logstashPort = Integer.parseInt(System.getenv().getOrDefault("APP_LOGGING_PORT", "5000"));
     private final Integer queueSize = Integer.parseInt(System.getenv().getOrDefault("APP_LOGGING_QUEUE_SIZE", "512"));
