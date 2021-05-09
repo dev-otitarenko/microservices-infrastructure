@@ -58,10 +58,12 @@ public class EmployeeService {
             String line;
             while ((line = br.readLine()) != null) {
                 final String[] data = line.split(";");
-                final Employee dpt = new Employee();
-                dpt.setDeptNumber(data[0]);
-                dpt.setName(data[1]);
-                res.add(dpt);
+                final Employee emp = new Employee();
+                emp.setDeptNumber(data[0]);
+                emp.setFirstName(data[1]);
+                emp.setFamilyName(data[2]);
+                emp.setSalary(Float.parseFloat(data[3]));
+                res.add(emp);
             }
         }
 

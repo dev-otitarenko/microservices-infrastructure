@@ -16,23 +16,17 @@ import java.util.List;
 public class EmployeeController {
     private final EmployeeService empService;
 
-    @GetMapping("/")
-    public String welcome() {
-        log.info("Welcome API call");
-        return "Hello from test service!!";
-    }
-
     @GetMapping("/emp")
     public List<Employee> getList() {
         return empService.getList();
     }
 
-    @GetMapping("/dept/{id}")
+    @GetMapping("/emp/{id}")
     public Employee get(@PathVariable Long id) {
         return empService.get(id);
     }
 
-    @DeleteMapping("/dept/{id}")
+    @DeleteMapping("/emp/{id}")
     @Transactional
     public void delete(@PathVariable Long id) {
         Employee dept = empService.get(id);
@@ -40,13 +34,13 @@ public class EmployeeController {
             empService.delete(dept);
     }
 
-    @PutMapping("/dept")
+    @PutMapping("/emp")
     @Transactional
     public void create(@RequestBody @Valid Employee dept) {
         empService.save(dept);
     }
 
-    @PostMapping("/dept/{id}")
+    @PostMapping("/emp/{id}")
     @Transactional
     public void update(@PathVariable Long id, @RequestBody @Valid Employee dept) {
         dept.setId(id);

@@ -25,5 +25,13 @@ public class Employee {
 
     @NotNull
     @Column(nullable=false)
-    private String name;
+    private String firstName;
+
+    @NotNull
+    @Column(nullable=false)
+    private String familyName;
+
+    @NotNull
+    @Column(nullable=false)
+    private Float salary;
 }
