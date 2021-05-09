@@ -17,6 +17,7 @@ services:
       - "8801:8801"
     volumes:
       - ./docker/dept-service/logs:/tmp/logs
+
   emp-service:
     build:
       context: ./ms-employee-service
