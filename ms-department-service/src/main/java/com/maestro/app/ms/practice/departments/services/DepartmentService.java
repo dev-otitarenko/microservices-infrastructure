@@ -29,8 +29,8 @@ public class DepartmentService {
         return rec.orElse(null);
     }
 
-    public void save(Department dept) {
-        deptRepository.save(dept);
+    public Department save(Department dept) {
+        return deptRepository.save(dept);
     }
 
     public void delete(Department dept) {

@@ -16,12 +16,6 @@ import java.util.List;
 public class DepartmentController {
     private final DepartmentService deptService;
 
-    @GetMapping("/")
-    public String welcome() {
-        log.info("Welcome API call");
-        return "Hello from test service!!";
-    }
-
     @GetMapping("/dept")
     public List<Department> getList() {
         return deptService.getList();
