@@ -21,7 +21,7 @@ public class Employee {
 
     @NotNull
     @Column(nullable=false)
-    private String deptNumber;
+    private String deptId;
 
     @NotNull
     @Column(nullable=false)

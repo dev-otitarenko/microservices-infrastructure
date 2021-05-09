@@ -29,6 +29,10 @@ public class EmployeeService {
         return rec.orElse(null);
     }
 
+    public List<Employee> getDeptEmployees(String deptId) {
+        return empRepository.getDeptEmployees(deptId);
+    }
+
     public void save(Employee emp) {
         empRepository.save(emp);
     }
@@ -59,7 +63,7 @@ public class EmployeeService {
             while ((line = br.readLine()) != null) {
                 final String[] data = line.split(";");
                 final Employee emp = new Employee();
-                emp.setDeptNumber(data[0]);
+                emp.setDeptId(data[0]);
                 emp.setFirstName(data[1]);
                 emp.setFamilyName(data[2]);
                 emp.setSalary(Float.parseFloat(data[3]));
