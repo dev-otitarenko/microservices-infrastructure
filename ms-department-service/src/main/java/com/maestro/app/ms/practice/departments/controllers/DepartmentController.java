@@ -58,6 +58,7 @@ public class DepartmentController {
         return ret;
     }
 
+
     @DeleteMapping("/dept/{id}")
     @Transactional
     public void delete(@PathVariable Long id) {

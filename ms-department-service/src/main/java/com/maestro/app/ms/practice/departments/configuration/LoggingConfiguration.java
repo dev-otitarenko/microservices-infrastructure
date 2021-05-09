@@ -17,7 +17,6 @@ public class LoggingConfiguration {
     private static final String ASYNC_LOGSTASH_APPENDER_NAME = "ASYNC_LOGSTASH";
     private final Logger LOG = LoggerFactory.getLogger(LoggingConfiguration.class);
     private final LoggerContext CONTEXT = (LoggerContext) LoggerFactory.getILoggerFactory();
-
     private final String appName = System.getenv().getOrDefault("APP_LOGGING_NAME", "ms-dept-service");
     private final String logstashHost = System.getenv().getOrDefault("APP_LOGGING_HOST", "localhost");
     private final Integer logstashPort = Integer.parseInt(System.getenv().getOrDefault("APP_LOGGING_PORT", "5000"));

@@ -20,6 +20,5 @@ class DepartmentServiceTest {
         dept.setName("IT Unit");
 
         dept = deptRepository.save(dept);
-
     }
 }
