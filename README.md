@@ -1,4 +1,4 @@
-# Monitoring with prometheus and grafana and log aggregation using ELK stack
+# Monitoring with Prometheus and Grafana and log aggregation using ELK stack
 
 1. [Support Prometheus in Spring Boot Application](./SB-PROMETHEUS.md)
 2. [Configuring Logging to ELK in Spring Boot Application](./SB-LOGGING.md)

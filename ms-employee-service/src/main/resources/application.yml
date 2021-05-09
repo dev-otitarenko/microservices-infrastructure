@@ -1,11 +1,11 @@
 # Server config
 server:
-  port: 8801
+  port: 8802
 
 # Spring conf
 spring:
   datasource:
-    url: jdbc:h2:mem:DBdepts;DB_CLOSE_DELAY=-1
+    url: jdbc:h2:mem:DBemps;DB_CLOSE_DELAY=-1
     driver-class-name: org.h2.Driver
   jpa:
     hibernate:

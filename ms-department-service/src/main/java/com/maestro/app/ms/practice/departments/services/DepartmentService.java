@@ -29,8 +29,8 @@ public class DepartmentService {
         return rec.orElse(null);
     }
 
-    public void save(Department dept) {
-        deptRepository.save(dept);
+    public Department save(Department dept) {
+        return deptRepository.save(dept);
     }
 
     public void delete(Department dept) {
@@ -59,7 +59,7 @@ public class DepartmentService {
             while ((line = br.readLine()) != null) {
                 final String[] data = line.split(";");
                 final Department dpt = new Department();
-                dpt.setDeptNumber(data[0]);
+                dpt.setDeptNum(data[0]);
                 dpt.setName(data[1]);
                 res.add(dpt);
             }

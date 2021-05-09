@@ -1,4 +1,4 @@
-package com.maestro.app.ms.practice.departments.configuration;
+package com.maestro.app.ms.practice.employees.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import ch.qos.logback.classic.AsyncAppender;
@@ -17,7 +17,8 @@ public class LoggingConfiguration {
     private static final String ASYNC_LOGSTASH_APPENDER_NAME = "ASYNC_LOGSTASH";
     private final Logger LOG = LoggerFactory.getLogger(LoggingConfiguration.class);
     private final LoggerContext CONTEXT = (LoggerContext) LoggerFactory.getILoggerFactory();
-    private final String appName = System.getenv().getOrDefault("APP_LOGGING_NAME", "ms-dept-service");
+
+    private final String appName = System.getenv().getOrDefault("APP_LOGGING_NAME", "ms-emp-service");
     private final String logstashHost = System.getenv().getOrDefault("APP_LOGGING_HOST", "localhost");
     private final Integer logstashPort = Integer.parseInt(System.getenv().getOrDefault("APP_LOGGING_PORT", "5000"));
     private final Integer queueSize = Integer.parseInt(System.getenv().getOrDefault("APP_LOGGING_QUEUE_SIZE", "512"));

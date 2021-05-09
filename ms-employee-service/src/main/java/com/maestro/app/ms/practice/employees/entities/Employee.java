@@ -1,4 +1,4 @@
-package com.maestro.app.ms.practice.departments.entities;
+package com.maestro.app.ms.practice.employees.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Department {
+public class Employee {
     @Id
     @Column(nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +21,17 @@ public class Department {
 
     @NotNull
     @Column(nullable=false)
-    private String deptNum;
+    private String deptId;
 
     @NotNull
     @Column(nullable=false)
-    private String name;
+    private String firstName;
+
+    @NotNull
+    @Column(nullable=false)
+    private String familyName;
+
+    @NotNull
+    @Column(nullable=false)
+    private Float salary;
 }
