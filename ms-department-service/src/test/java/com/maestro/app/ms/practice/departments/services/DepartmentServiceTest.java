@@ -16,9 +16,10 @@ class DepartmentServiceTest {
     @Test
     public void checkRepository() {
         Department dept = new Department();
-        dept.setDeptNumber("IT");
+        dept.setDeptNum("IT");
         dept.setName("IT Unit");
 
-        deptRepository.save(dept);
+        dept = deptRepository.save(dept);
+
     }
 }

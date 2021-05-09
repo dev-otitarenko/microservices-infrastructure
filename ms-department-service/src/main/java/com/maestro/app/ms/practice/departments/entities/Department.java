@@ -21,7 +21,7 @@ public class Department {
 
     @NotNull
     @Column(nullable=false)
-    private String deptNumber;
+    private String deptNum;
 
     @NotNull
     @Column(nullable=false)
