@@ -18,17 +18,20 @@ public class EmployeeController {
 
     @GetMapping("/emp")
     public List<Employee> getList() {
+        log.info("Get the list of employees");
         return empService.getList();
     }
 
     @GetMapping("/emp/{id}")
     public Employee get(@PathVariable Long id) {
+        log.info("Get the employee record \"{}\"", id);
         return empService.get(id);
     }
 
     @DeleteMapping("/emp/{id}")
     @Transactional
     public void delete(@PathVariable Long id) {
+        log.info("Delete the employee record \"{}\"", id);
         Employee dept = empService.get(id);
         if (dept != null)
             empService.delete(dept);
@@ -37,12 +40,14 @@ public class EmployeeController {
     @PutMapping("/emp")
     @Transactional
     public void create(@RequestBody @Valid Employee dept) {
+        log.info("Create the employee record");
         empService.save(dept);
     }
 
     @PostMapping("/emp/{id}")
     @Transactional
     public void update(@PathVariable Long id, @RequestBody @Valid Employee dept) {
+        log.info("Update the employee record \"{}\"", id);
         dept.setId(id);
         empService.save(dept);
     }

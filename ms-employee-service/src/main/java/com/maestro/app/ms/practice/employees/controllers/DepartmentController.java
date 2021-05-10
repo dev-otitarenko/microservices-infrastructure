@@ -18,6 +18,7 @@ public class DepartmentController {
 
     @GetMapping("/dept/{deptId}")
     public List<Employee> getListEmployees(@PathVariable String deptId) {
+        log.info("Get the list of employees for the specific department \"{}\"", deptId);
         return empService.getDeptEmployees(deptId);
     }
 }
