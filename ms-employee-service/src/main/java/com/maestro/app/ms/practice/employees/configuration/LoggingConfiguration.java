@@ -8,10 +8,12 @@ import net.logstash.logback.encoder.LogstashEncoder;
 import net.logstash.logback.stacktrace.ShortenedThrowableConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 
 import java.net.InetSocketAddress;
 
 @Configuration
+@Profile("!test")
 public class LoggingConfiguration {
     private static final String LOGSTASH_APPENDER_NAME = "LOGSTASH";
     private static final String ASYNC_LOGSTASH_APPENDER_NAME = "ASYNC_LOGSTASH";
