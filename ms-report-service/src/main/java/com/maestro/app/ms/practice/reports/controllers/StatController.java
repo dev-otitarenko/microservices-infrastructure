@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
-import static com.maestro.app.ms.practice.reports.controllers.Resilience4jConstants.DEPARTMENT_CLIENT;
 import static com.maestro.app.ms.practice.reports.controllers.Resilience4jConstants.STAT_CLIENT;
 
 @Slf4j
@@ -28,8 +27,28 @@ public class StatController {
     private final DepartmentService deptService;
     private final EmployeeService empService;
 
-    @GetMapping(value = "/dept/summary")
-    @CircuitBreaker(name = DEPARTMENT_CLIENT, fallbackMethod = "defaultStat")
+    @GetMapping(value = "/summary")
+    @CircuitBreaker(name = STAT_CLIENT, fallbackMethod = "defaultSummary")
+    public Map<String, Object> getSummary() {
+        Map<String, Object> r = new LinkedHashMap<>();
+
+        List<DepartmentDto> depts = deptService.getAllDepartments();
+        List<EmployeeDto> emps = empService.getAllEmployees();
+
+        r.put("countDepartments", depts.size());
+
+        long cntEmployees = emps.size();
+        double summSalary = emps.stream()
+                .mapToDouble(EmployeeDto::getSalary)
+                .sum();
+        r.put("countEmployees", cntEmployees);
+        r.put("salary", summSalary);
+
+        return r;
+    }
+
+    @GetMapping(value = "/summary/dept")
+    @CircuitBreaker(name = STAT_CLIENT, fallbackMethod = "defaultStat")
     public List<Map<String, Object>> getDeptsSummary() {
         List<Map<String, Object>> ret = new ArrayList<>();
 
@@ -56,6 +75,11 @@ public class StatController {
         });
 
         return ret;
+    }
+
+    private Map<String, Object> defaultSummary(Throwable ex) {
+        log.warn("Fallback while getting the list of departments/employees:  {}.", ex.getMessage());
+        return new HashMap<>();
     }
 
     private  List<Map<String, Object>> defaultStat(Throwable ex) {
