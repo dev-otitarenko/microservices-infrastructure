@@ -23,4 +23,8 @@ scrape_configs:
     metrics_path: '/actuator/prometheus'
     scrape_interval: 5s
     static_configs:
-      - targets: [ 'dept-service:8801', 'emp-service:8802' ]
+      - targets: [
+          'dept-service:8801',
+          'emp-service:8802',
+          'report-service:8803'
+      ]

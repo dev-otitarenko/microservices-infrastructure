@@ -1,6 +1,6 @@
-package com.maestro.app.ms.practice.departments.services;
+package com.maestro.app.ms.practice.reports.clients;
 
-import com.maestro.app.ms.practice.departments.entities.Employee;
+import com.maestro.app.ms.practice.reports.domain.EmployeeDto;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,14 @@ import java.util.List;
 @FeignClient(name = "emp-service", url = "http://emp-service:8802", fallbackFactory = EmployeeServiceFallbackFactory.class)
 public interface EmployeeService {
     @GetMapping(value = "/dept/{deptId}")
-    List<Employee> getDeptEmployees(@PathVariable String deptId);
+    List<EmployeeDto> getDeptEmployees(@PathVariable String deptId);
+
+    @GetMapping(value = "/emp")
+    List<EmployeeDto> getAllEmployees();
+
+
+    @GetMapping(value = "/emp/{id}")
+    EmployeeDto get(@PathVariable Long id);
 }
 
 @Slf4j
@@ -29,8 +36,18 @@ class EmployeeServiceFallbackFactory implements FallbackFactory<EmployeeService>
         LOGGER.info("fallback; reason was: {}, {}", cause.getMessage(), cause);
         return new EmployeeService() {
             @Override
-            public List<Employee> getDeptEmployees(String deptId) {
+            public List<EmployeeDto> getDeptEmployees(String deptId) {
                 return new ArrayList<>();
+            }
+
+            @Override
+            public List<EmployeeDto> getAllEmployees() {
+                return new ArrayList<>();
+            }
+
+            @Override
+            public EmployeeDto get(Long deptId) {
+                return new EmployeeDto();
             }
         };
     }

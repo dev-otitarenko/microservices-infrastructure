@@ -1,6 +1,5 @@
-package com.maestro.app.ms.practice.departments.configuration;
+package com.maestro.app.ms.practice.reports.configuration;
 
-import org.springframework.context.annotation.Configuration;
 import ch.qos.logback.classic.AsyncAppender;
 import ch.qos.logback.classic.LoggerContext;
 import net.logstash.logback.appender.LogstashTcpSocketAppender;
@@ -8,6 +7,7 @@ import net.logstash.logback.encoder.LogstashEncoder;
 import net.logstash.logback.stacktrace.ShortenedThrowableConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.net.InetSocketAddress;
@@ -19,7 +19,7 @@ public class LoggingConfiguration {
     private static final String ASYNC_LOGSTASH_APPENDER_NAME = "ASYNC_LOGSTASH";
     private final Logger LOG = LoggerFactory.getLogger(LoggingConfiguration.class);
     private final LoggerContext CONTEXT = (LoggerContext) LoggerFactory.getILoggerFactory();
-    private final String appName = System.getenv().getOrDefault("APP_LOGGING_NAME", "ms-dept-service");
+    private final String appName = System.getenv().getOrDefault("APP_LOGGING_NAME", "ms-report-service");
     private final String logstashHost = System.getenv().getOrDefault("APP_LOGGING_HOST", "localhost");
     private final Integer logstashPort = Integer.parseInt(System.getenv().getOrDefault("APP_LOGGING_PORT", "5000"));
     private final Integer queueSize = Integer.parseInt(System.getenv().getOrDefault("APP_LOGGING_QUEUE_SIZE", "512"));

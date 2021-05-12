@@ -20,6 +20,7 @@
     <modules>
         <module>ms-department-service</module>
         <module>ms-employee-service</module>
+        <module>ms-report-service</module>
     </modules>
 
     <properties>
