@@ -5,17 +5,3 @@
 3. [Monitoring with Prometheus and Grafana](./PROMETHEUS.md)
 4. [Log aggregation using ELK stack](./ELK.md)
 
-## Installation the application
-
-```sh
-$ mvn clean package
-$ docker-compose -f ./docker-compose-dev.yml stop
-$ docker-compose -f ./docker-compose-dev.yml rm
-$ docker-compose -f ./docker-compose-dev.yml up -d --build
-```
-
-or
-
-```sh
-$ sh ./build-dev.sh
-```
