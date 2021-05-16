@@ -1,0 +1,31 @@
+# Server config
+server:
+  port: 8803
+
+
+# Spring conf
+spring:
+  application:
+    name: report-service
+
+# Actuator params
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+resilience4j.circuitbreaker:
+  instances:
+    processService:
+      slidingWindowSize: 50
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowType: TIME_BASED
+      minimumNumberOfCalls: 20
+      waitDurationInOpenState: 50s
+      failureRateThreshold: 50
