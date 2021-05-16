@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.maestro.app.ms.practice</groupId>
-    <artifactId>ms-practice-project</artifactId>
+    <groupId>com.maestro.app.practice</groupId>
+    <artifactId>best-practice-projects</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Best practice for Spring Boot Application</name>
-    <description>The practice project using Spring Boot 2.4.5, OpenFeign. Monitoring with Prometheus and Grafana and log aggregation using ELK stack</description>
+    <name>Spring Boot best practice projects</name>
+    <description>The practice projects using Spring Boot 2.4.5, OpenFeign. Monitoring with Prometheus and Grafana and log aggregation using ELK stack</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -18,9 +18,7 @@
     </parent>
 
     <modules>
-        <module>ms-department-service</module>
-        <module>ms-employee-service</module>
-        <module>ms-report-service</module>
+        <module>microservices-practice-1</module>
     </modules>
 
     <properties>
