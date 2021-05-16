@@ -1,54 +1,57 @@
 package com.maestro.app.practice.ch2.ms.reports.clients;
 
+import com.maestro.app.practice.ch2.ms.reports.domain.DepartmentDto;
 import com.maestro.app.practice.ch2.ms.reports.domain.EmployeeDto;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.cloud.openfeign.FallbackFactory;
-import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@FeignClient(name = "emp-service", url = "http://emp-service:8802", fallbackFactory = EmployeeServiceFallbackFactory.class)
-public interface EmployeeService {
-    @GetMapping(value = "/dept/{deptId}")
-    List<EmployeeDto> getDeptEmployees(@PathVariable String deptId);
+@Component
+public class EmployeeService {
+    private final String EMP_PATH_V1 = "http://emp-service:8802/emp";
+    private final String DEPT_PATH_V1 = "http://emp-service:8802/dept";
+    private final RestTemplate restTemplate;
+
+    public EmployeeService(RestTemplateBuilder restTemplateBuilder) {
+        this.restTemplate = restTemplateBuilder.build();
+    }
+
+    public List<EmployeeDto> getDeptEmployees(String deptId) {
+        ResponseEntity<List<EmployeeDto>> ret = restTemplate.exchange(
+                String.format("%s/%s", DEPT_PATH_V1, deptId),
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<>() {});
+        if (ret.hasBody()){
+            return ret.getBody();
+        }
+        return new ArrayList<>();
+    }
 
     @GetMapping(value = "/emp")
-    List<EmployeeDto> getAllEmployees();
+    public List<EmployeeDto> getAllEmployees() {
+        ResponseEntity<List<EmployeeDto>> ret = restTemplate.exchange(
+                EMP_PATH_V1,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<>() {});
+        if (ret.hasBody()){
+            return ret.getBody();
+        }
+        return new ArrayList<>();
+    }
 
 
     @GetMapping(value = "/emp/{id}")
-    EmployeeDto get(@PathVariable Long id);
-}
-
-@Slf4j
-@Component
-class EmployeeServiceFallbackFactory implements FallbackFactory<EmployeeService> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeServiceFallbackFactory.class);
-
-    @Override
-    public EmployeeService create(Throwable cause) {
-        LOGGER.info("fallback; reason was: {}, {}", cause.getMessage(), cause);
-        return new EmployeeService() {
-            @Override
-            public List<EmployeeDto> getDeptEmployees(String deptId) {
-                return new ArrayList<>();
-            }
-
-            @Override
-            public List<EmployeeDto> getAllEmployees() {
-                return new ArrayList<>();
-            }
-
-            @Override
-            public EmployeeDto get(Long deptId) {
-                return new EmployeeDto();
-            }
-        };
+    public EmployeeDto get(@PathVariable Long id) {
+        return restTemplate.getForObject(String.format("%s/%d", EMP_PATH_V1, id), EmployeeDto.class);
     }
 }
