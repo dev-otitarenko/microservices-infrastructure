@@ -1,0 +1,37 @@
+# Server config
+server:
+  port: 8801
+
+
+# Spring conf
+spring:
+  application:
+    name: dept-service
+  datasource:
+    url: jdbc:h2:mem:DBdepts;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+# Actuator params
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+resilience4j.circuitbreaker:
+  instances:
+    processService:
+      slidingWindowSize: 50
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowType: TIME_BASED
+      minimumNumberOfCalls: 20
+      waitDurationInOpenState: 50s
+      failureRateThreshold: 50
