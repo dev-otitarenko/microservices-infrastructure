@@ -1,4 +1,4 @@
-# Installation the application
+## Running the application
 
 ```sh
 $ mvn clean package
@@ -11,4 +11,11 @@ or
 
 ```sh
 $ sh ./build-dev.sh
+```
+
+## Removing the application
+
+```sh
+$ docker-compose -f ./docker-compose-dev.yml stop
+$ docker-compose -f ./docker-compose-dev.yml rm
 ```
