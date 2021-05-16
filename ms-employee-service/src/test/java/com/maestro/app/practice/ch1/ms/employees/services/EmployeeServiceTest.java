@@ -1,6 +1,6 @@
-package com.maestro.app.ms.practice.employees.services;
+package com.maestro.app.practice.ch1.ms.employees.services;
 
-import com.maestro.app.ms.practice.employees.repositories.EmployeeRepository;
+import com.maestro.app.practice.ch1.ms.employees.repositories.EmployeeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

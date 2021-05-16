@@ -1,4 +1,4 @@
-package com.maestro.app.ms.practice.employees.repositories;
+package com.maestro.app.practice.ch1.ms.employees.repositories;
 
 import com.maestro.app.ms.practice.employees.entities.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;

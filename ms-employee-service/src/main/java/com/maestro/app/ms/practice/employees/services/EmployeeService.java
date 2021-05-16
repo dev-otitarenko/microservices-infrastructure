@@ -1,7 +1,7 @@
 package com.maestro.app.ms.practice.employees.services;
 
 import com.maestro.app.ms.practice.employees.entities.Employee;
-import com.maestro.app.ms.practice.employees.repositories.EmployeeRepository;
+import com.maestro.app.practice.ch1.ms.employees.repositories.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
