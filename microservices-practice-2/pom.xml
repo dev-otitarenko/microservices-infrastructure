@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.maestro.app.practice.ch2</groupId>
+    <artifactId>practice-chapter-2</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Practice project, chapter #2</name>
+    <description>Using Spring Boot 2.4.5, RestTemplate.</description>
+
+    <parent>
+        <groupId>com.maestro.app.practice</groupId>
+        <artifactId>best-practice-projects</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <modules>
+        <module>ms-department-service</module>
+        <module>ms-employee-service</module>
+        <module>ms-report-service</module>
+    </modules>
+</project>
