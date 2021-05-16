@@ -1,0 +1,81 @@
+version: '2.3'
+
+services:
+  eureka-server:
+    build:
+      context: ./ms-eureka-server
+      dockerfile: Dockerfile
+    environment:
+      APP_LOGGING_NAME: eurekaServer
+      APP_LOGGING_HOST: logstash
+      APP_LOGGING_PORT: 5000
+      APP_LOGGING_QUEUE_SIZE: 512
+    container_name: eureka-server
+    hostname: eureka-server
+    restart: always
+    ports:
+      - "8761:8761"
+
+  dept-service:
+    build:
+      context: ./ms-department-service
+      dockerfile: Dockerfile
+    environment:
+      APP_LOGGING_NAME: deptService
+      APP_LOGGING_HOST: logstash
+      APP_LOGGING_PORT: 5000
+      APP_LOGGING_QUEUE_SIZE: 512
+      app.eureka.server: http://eureka-server:8761/eureka/
+    container_name: dept-service
+    hostname: dept-service
+    restart: always
+    ports:
+      - "8801:8801"
+
+  emp-service:
+    build:
+      context: ./ms-employee-service
+      dockerfile: Dockerfile
+    environment:
+      APP_LOGGING_NAME: empService
+      APP_LOGGING_HOST: logstash
+      APP_LOGGING_PORT: 5000
+      APP_LOGGING_QUEUE_SIZE: 512
+      app.eureka.server: http://eureka-server:8761/eureka/
+    container_name: emp-service
+    hostname: emp-service
+    restart: always
+    ports:
+      - "8802:8802"
+
+  report-service:
+    build:
+      context: ./ms-report-service
+      dockerfile: Dockerfile
+    environment:
+      APP_LOGGING_NAME: reportService
+      APP_LOGGING_HOST: logstash
+      APP_LOGGING_PORT: 5000
+      APP_LOGGING_QUEUE_SIZE: 512
+      app.eureka.server: http://eureka-server:8761/eureka/
+    container_name: report-service
+    hostname: report-service
+    restart: always
+    ports:
+      - "8803:8803"
+
+  gateway-service:
+    build:
+      context: ./ms-gateway-service
+      dockerfile: Dockerfile
+    environment:
+      APP_LOGGING_NAME: gatewayService
+      APP_LOGGING_HOST: logstash
+      APP_LOGGING_PORT: 5000
+      APP_LOGGING_QUEUE_SIZE: 512
+      app.eureka.server: http://eureka-server:8761/eureka/
+    container_name: gateway-service
+    hostname: gateway-service
+    restart: always
+    ports:
+      - "8810:8810"
