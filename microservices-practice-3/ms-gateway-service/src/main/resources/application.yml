@@ -1,0 +1,24 @@
+server:
+  port: 8810
+
+# Spring conf
+spring:
+  application:
+    name: gateway-service
+
+# Actuator params
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${app.eureka.server}
