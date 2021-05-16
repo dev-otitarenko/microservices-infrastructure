@@ -19,6 +19,7 @@
 
     <modules>
         <module>microservices-practice-1</module>
+        <module>microservices-practice-2</module>
         <module>microservices-practice-3</module>
     </modules>
 
