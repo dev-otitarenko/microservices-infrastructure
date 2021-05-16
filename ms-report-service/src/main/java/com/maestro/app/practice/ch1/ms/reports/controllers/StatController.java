@@ -1,9 +1,9 @@
-package com.maestro.app.ms.practice.reports.controllers;
+package com.maestro.app.practice.ch1.ms.reports.controllers;
 
-import com.maestro.app.ms.practice.reports.clients.DepartmentService;
-import com.maestro.app.ms.practice.reports.clients.EmployeeService;
-import com.maestro.app.ms.practice.reports.domain.DepartmentDto;
-import com.maestro.app.ms.practice.reports.domain.EmployeeDto;
+import com.maestro.app.practice.ch1.ms.reports.clients.DepartmentService;
+import com.maestro.app.practice.ch1.ms.reports.clients.EmployeeService;
+import com.maestro.app.practice.ch1.ms.reports.domain.DepartmentDto;
+import com.maestro.app.practice.ch1.ms.reports.domain.EmployeeDto;
 import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
-import static com.maestro.app.ms.practice.reports.controllers.Resilience4jConstants.STAT_CLIENT;
+import static com.maestro.app.practice.ch1.ms.reports.controllers.Resilience4jConstants.STAT_CLIENT;
 
 @Slf4j
 @RestController

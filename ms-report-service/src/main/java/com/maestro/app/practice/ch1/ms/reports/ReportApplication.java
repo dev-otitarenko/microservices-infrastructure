@@ -1,4 +1,4 @@
-package com.maestro.app.ms.practice.reports;
+package com.maestro.app.practice.ch1.ms.reports;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

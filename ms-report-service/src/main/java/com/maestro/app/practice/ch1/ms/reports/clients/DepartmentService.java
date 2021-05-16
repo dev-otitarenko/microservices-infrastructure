@@ -1,6 +1,6 @@
-package com.maestro.app.ms.practice.reports.clients;
+package com.maestro.app.practice.ch1.ms.reports.clients;
 
-import com.maestro.app.ms.practice.reports.domain.DepartmentDto;
+import com.maestro.app.practice.ch1.ms.reports.domain.DepartmentDto;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

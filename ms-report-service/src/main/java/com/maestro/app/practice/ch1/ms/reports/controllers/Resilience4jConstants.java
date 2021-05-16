@@ -1,4 +1,4 @@
-package com.maestro.app.ms.practice.reports.controllers;
+package com.maestro.app.practice.ch1.ms.reports.controllers;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

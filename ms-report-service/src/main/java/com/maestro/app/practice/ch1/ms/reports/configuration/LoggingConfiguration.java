@@ -1,4 +1,4 @@
-package com.maestro.app.ms.practice.reports.configuration;
+package com.maestro.app.practice.ch1.ms.reports.configuration;
 
 import ch.qos.logback.classic.AsyncAppender;
 import ch.qos.logback.classic.LoggerContext;

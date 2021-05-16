@@ -1,4 +1,4 @@
-package com.maestro.app.ms.practice.reports.domain;
+package com.maestro.app.practice.ch1.ms.reports.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
