@@ -7,7 +7,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Practice project, chapter #1</name>
-    <description>The practice project using Spring Boot 2.4.5, OpenFeign, Eureka Server, Eureka Client and Gateway.</description>
+    <description>Using Spring Boot 2.x.x, Spring Boot JPA, Spring Boot MVC etc OpenFeign</description>
 
     <parent>
         <groupId>com.maestro.app.practice</groupId>
