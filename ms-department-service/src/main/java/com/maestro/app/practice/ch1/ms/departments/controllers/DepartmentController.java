@@ -1,7 +1,7 @@
-package com.maestro.app.ms.practice.departments.controllers;
+package com.maestro.app.practice.ch1.ms.departments.controllers;
 
-import com.maestro.app.ms.practice.departments.entities.Department;
-import com.maestro.app.ms.practice.departments.services.DepartmentService;
+import com.maestro.app.practice.ch1.ms.departments.entities.Department;
+import com.maestro.app.practice.ch1.ms.departments.services.DepartmentService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

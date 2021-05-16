@@ -1,4 +1,4 @@
-package com.maestro.app.ms.practice.departments.configuration;
+package com.maestro.app.practice.ch1.ms.departments.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import ch.qos.logback.classic.AsyncAppender;

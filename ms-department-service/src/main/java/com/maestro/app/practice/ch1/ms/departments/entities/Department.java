@@ -1,4 +1,4 @@
-package com.maestro.app.ms.practice.departments.entities;
+package com.maestro.app.practice.ch1.ms.departments.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

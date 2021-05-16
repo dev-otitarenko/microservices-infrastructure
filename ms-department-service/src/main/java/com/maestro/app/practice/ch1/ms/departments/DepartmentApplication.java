@@ -1,4 +1,4 @@
-package com.maestro.app.ms.practice.departments;
+package com.maestro.app.practice.ch1.ms.departments;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
