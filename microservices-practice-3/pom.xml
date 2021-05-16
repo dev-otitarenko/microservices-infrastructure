@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.maestro.app.practice.ch3</groupId>
+    <artifactId>practice-chapter-3</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Practice project, chapter #3</name>
+    <description>The practice project using Spring Boot 2.4.5, OpenFeign, Eureka Server, Eureka Client and Gateway.</description>
+
+    <parent>
+        <groupId>com.maestro.app.practice</groupId>
+        <artifactId>best-practice-projects</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <modules>
+        <module>ms-eureka-server</module>
+        <module>ms-department-service</module>
+        <module>ms-employee-service</module>
+        <module>ms-report-service</module>
+        <module>ms-gateway-service</module>
+    </modules>
+</project>

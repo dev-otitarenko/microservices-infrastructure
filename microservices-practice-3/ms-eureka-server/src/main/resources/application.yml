@@ -1,0 +1,27 @@
+# default port for eureka server
+server:
+  port: 8761
+
+# Give a name to the eureka server
+spring:
+  application:
+    name: eureka-server
+
+# Actuator params
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  # eureka by default will register itself as a client. So, we need to set it to false.
+  # What's a client server? See other microservices (student, auth, etc).
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false

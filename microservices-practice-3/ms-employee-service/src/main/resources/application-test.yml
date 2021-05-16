@@ -1,0 +1,15 @@
+# Spring conf
+spring:
+  application:
+    name: emp-service
+  datasource:
+    url: jdbc:h2:mem:DBTestEmp;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761
