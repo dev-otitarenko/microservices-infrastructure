@@ -10,7 +10,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
@@ -56,7 +55,7 @@ public class EmployeeControllerSpringBootTest {
         given(employeeService.getList())
                 .willReturn(emps);
         // when
-        ResponseEntity<List<Employee>> response =  restTemplate.exchange(
+        ResponseEntity<List<Employee>> response = restTemplate.exchange(
                 "/emp",
                 HttpMethod.GET,
                 null,
