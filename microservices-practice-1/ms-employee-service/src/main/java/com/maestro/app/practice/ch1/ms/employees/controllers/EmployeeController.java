@@ -4,6 +4,7 @@ import com.maestro.app.practice.ch1.ms.employees.entities.Employee;
 import com.maestro.app.practice.ch1.ms.employees.services.EmployeeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -38,6 +39,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/emp")
+    @ResponseStatus(HttpStatus.CREATED)
     @Transactional
     public void create(@RequestBody @Valid Employee dept) {
         log.info("Create the employee record");
