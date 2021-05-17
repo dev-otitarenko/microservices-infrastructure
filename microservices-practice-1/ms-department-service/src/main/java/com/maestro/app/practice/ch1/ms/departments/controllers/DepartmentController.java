@@ -4,6 +4,7 @@ import com.maestro.app.practice.ch1.ms.departments.entities.Department;
 import com.maestro.app.practice.ch1.ms.departments.services.DepartmentService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -31,24 +32,29 @@ public class DepartmentController {
     @DeleteMapping("/dept/{id}")
     @Transactional
     public void delete(@PathVariable Long id) {
-        log.info("Delete the specific department \"{}\".", id);
+        log.info("Removing the specific department \"{}\".", id);
         Department dept = deptService.get(id);
-        if (dept != null)
+        if (dept != null) {
             deptService.delete(dept);
+            log.info("Removing completed");
+        }
     }
 
     @PutMapping("/dept")
+    @ResponseStatus(HttpStatus.CREATED)
     @Transactional
     public void create(@RequestBody @Valid Department dept) {
-        log.info("Create the department.");
+        log.info("Creating the department.");
         deptService.save(dept);
+        log.info("Creating completed");
     }
 
     @PostMapping("/dept/{id}")
     @Transactional
     public void update(@PathVariable Long id, @RequestBody @Valid Department dept) {
-        log.info("Update the specific department \"{}\".", id);
+        log.info("Updating the specific department \"{}\".", id);
         dept.setId(id);
         deptService.save(dept);
+        log.info("Updating completed");
     }
 }
