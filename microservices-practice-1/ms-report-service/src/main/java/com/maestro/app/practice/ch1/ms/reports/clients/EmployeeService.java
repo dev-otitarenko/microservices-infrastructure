@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.ArrayList;
 import java.util.List;
 
-@FeignClient(name = "emp-service", url = "http://emp-service:8802", fallbackFactory = EmployeeServiceFallbackFactory.class)
+@FeignClient(name = "emp-service", url = "${app.services.emp-service}", fallbackFactory = EmployeeServiceFallbackFactory.class)
 public interface EmployeeService {
     @GetMapping(value = "/dept/{deptId}")
     List<EmployeeDto> getDeptEmployees(@PathVariable String deptId);

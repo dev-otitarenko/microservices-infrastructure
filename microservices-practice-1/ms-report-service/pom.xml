@@ -12,8 +12,8 @@
 
 	<artifactId>ms-report-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>${parent.artifactId}_${project.artifactId}</name>
-	<description>${parent.artifactId}_${project.artifactId}: ${project.version}</description>
+	<name>${project.parent.artifactId}_${project.artifactId}</name>
+	<description>${project.parent.artifactId}_${project.artifactId}: ${project.version}</description>
 
 	<dependencies>
 		<dependency>
@@ -45,7 +45,7 @@
 			<version>${resilience4j.version}</version>
 		</dependency>
 
-		<!-- << For Prometheus/Graphana -->
+		<!-- << For Prometheus/Grafana -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -105,6 +105,43 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId> <!-- surefire plugin version managed by Spring Boot -->
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+				<executions>
+					<execution>
+						<id>unit-tests</id>
+						<phase>test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<skipTests>false</skipTests>
+							<includes>
+								<include>**/*Test.java</include>
+							</includes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>integration-tests</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<skipTests>false</skipTests>
+							<includes>
+								<include>**/*IT.*</include>
+								<include>**/*IntTest.*</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

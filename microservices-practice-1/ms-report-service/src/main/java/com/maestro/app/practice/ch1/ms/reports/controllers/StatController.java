@@ -35,13 +35,13 @@ public class StatController {
         List<DepartmentDto> depts = deptService.getAllDepartments();
         List<EmployeeDto> emps = empService.getAllEmployees();
 
-        r.put("countDepartments", depts.size());
+        r.put("countDepts", depts.size());
 
         long cntEmployees = emps.size();
         double summSalary = emps.stream()
                 .mapToDouble(EmployeeDto::getSalary)
                 .sum();
-        r.put("countEmployees", cntEmployees);
+        r.put("countEmps", cntEmployees);
         r.put("salary", summSalary);
 
         return r;
@@ -68,7 +68,7 @@ public class StatController {
                             .mapToDouble(EmployeeDto::getSalary)
                             .sum();
 
-            r.put("count", cnt);
+            r.put("countEmps", cnt);
             r.put("salary", summ);
 
             ret.add(r);

@@ -2,6 +2,11 @@
 server:
   port: 8803
 
+# app conf
+app:
+  services:
+    dept-service: http://dept-service:8801
+    emp-service: http://emp-service:8802
 
 # Spring conf
 spring:
