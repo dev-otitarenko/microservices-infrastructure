@@ -12,8 +12,8 @@
 
 	<artifactId>ms-department-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>${parent.artifactId}_${project.artifactId}</name>
-	<description>${parent.artifactId}_}${project.artifactId}: ${project.version}</description>
+	<name>${project.parent.artifactId}_${project.artifactId}</name>
+	<description>${project.parent.artifactId}_}${project.artifactId}: ${project.version}</description>
 
 	<dependencies>
 		<dependency>
@@ -76,11 +76,10 @@
 		</dependency>
 		<!--	>>	-->
 
-		<!--  https://mvnrepository.com/artifact/javax.validation/validation-api  -->
 		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>2.0.1.Final</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.2.4.Final</version>
 		</dependency>
 
 		<dependency>
