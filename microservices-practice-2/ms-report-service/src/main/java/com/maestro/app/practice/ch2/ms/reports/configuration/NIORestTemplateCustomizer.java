@@ -1,5 +1,6 @@
 package com.maestro.app.practice.ch2.ms.reports.configuration;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
 import org.apache.http.impl.nio.client.HttpAsyncClients;
 import org.apache.http.impl.nio.conn.PoolingNHttpClientConnectionManager;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 // @Component
+@Slf4j
 public class NIORestTemplateCustomizer implements RestTemplateCustomizer {
     public ClientHttpRequestFactory clientHttpRequestFactory() throws IOReactorException {
         final DefaultConnectingIOReactor ioreactor = new DefaultConnectingIOReactor(IOReactorConfig.custom().
@@ -35,7 +37,7 @@ public class NIORestTemplateCustomizer implements RestTemplateCustomizer {
         try {
             restTemplate.setRequestFactory(clientHttpRequestFactory());
         } catch (IOReactorException e) {
-            e.printStackTrace();
+            log.error("NIORestTemplateCustomizer::error", e);
         }
     }
 }

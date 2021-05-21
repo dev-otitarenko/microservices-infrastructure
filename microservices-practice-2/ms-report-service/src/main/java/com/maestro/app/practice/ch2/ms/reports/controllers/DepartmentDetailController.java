@@ -40,7 +40,7 @@ public class DepartmentDetailController {
 
         DepartmentDto dept = deptService.get(id);
         if (dept != null) {
-            ret.put("id", dept.getId());
+         //   ret.put("id", dept.getId());
             ret.put("deptNum", dept.getDeptNum());
             ret.put("name", dept.getName());
 

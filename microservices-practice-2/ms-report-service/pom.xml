@@ -12,10 +12,14 @@
 
 	<artifactId>ms-report-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>${parent.artifactId}_${project.artifactId}</name>
-	<description>${parent.artifactId}_${project.artifactId}: ${project.version}</description>
+	<name>${project.parent.artifactId}_${project.artifactId}</name>
+	<description>${project.parent.artifactId}_${project.artifactId}: ${project.version}</description>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -109,5 +113,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

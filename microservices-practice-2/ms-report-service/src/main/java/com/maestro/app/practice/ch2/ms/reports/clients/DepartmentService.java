@@ -1,5 +1,6 @@
 package com.maestro.app.practice.ch2.ms.reports.clients;
 
+import com.maestro.app.practice.ch2.ms.reports.configuration.ServicesProperties;
 import com.maestro.app.practice.ch2.ms.reports.domain.DepartmentDto;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
@@ -15,16 +16,18 @@ import java.util.List;
 // @ConfigurationProperties(prefix = "sfg.brewery", ignoreUnknownFields = false)
 @Component
 public class DepartmentService {
-    private final String DEPT_PATH_V1 = "http://dept-service:8801/dept";
     private final RestTemplate restTemplate;
+    private final ServicesProperties props;
 
-    public DepartmentService(RestTemplateBuilder restTemplateBuilder) {
+    public DepartmentService(RestTemplateBuilder restTemplateBuilder,
+                             ServicesProperties props) {
+        this.props = props;
         this.restTemplate = restTemplateBuilder.build();
     }
 
     public List<DepartmentDto> getAllDepartments() {
         ResponseEntity<List<DepartmentDto>> ret = restTemplate.exchange(
-                DEPT_PATH_V1,
+                props.getDepts() + "/dept",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<>() {});
@@ -35,6 +38,6 @@ public class DepartmentService {
     }
 
     public DepartmentDto get(@PathVariable Long deptId) {
-        return restTemplate.getForObject(String.format("%s/%d", DEPT_PATH_V1, deptId), DepartmentDto.class);
+        return restTemplate.getForObject(String.format("%s/dept/%d", props.getDepts(), deptId), DepartmentDto.class);
     }
 }
