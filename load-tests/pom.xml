@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>best-practice-projects</artifactId>
+        <groupId>com.maestro.app.practice</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>ms-load-tests</artifactId>
+
+    <properties>
+        <gatling.version>3.5.1</gatling.version>
+        <className>com.maestro.app.practice.loadtests.EmpsSimulation</className>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.gatling.highcharts</groupId>
+            <artifactId>gatling-charts-highcharts</artifactId>
+            <scope>test</scope>
+            <version>${gatling.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.gatling</groupId>
+            <artifactId>gatling-app</artifactId>
+            <scope>test</scope>
+            <version>${gatling.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.gatling</groupId>
+            <artifactId>gatling-recorder</artifactId>
+            <scope>test</scope>
+            <version>${gatling.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.gatling</groupId>
+                <artifactId>gatling-maven-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <simulationClass>${className}</simulationClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
