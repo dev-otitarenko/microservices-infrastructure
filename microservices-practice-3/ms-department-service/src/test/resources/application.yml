@@ -12,5 +12,4 @@ spring:
 # eureka conf
 eureka:
   client:
-    serviceUrl:
-      defaultZone: http://localhost:8761
+    enabled: false

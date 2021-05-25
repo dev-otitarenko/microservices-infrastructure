@@ -12,8 +12,8 @@
 
 	<artifactId>ms-eureka-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>${parent.artifactId}_${project.artifactId}</name>
-	<description>${project.artifactId}: ${project.version}</description>
+	<name>${project.parent.artifactId}_${project.artifactId}</name>
+	<description>${project.parent.artifactId}_${project.artifactId}: ${project.version}</description>
 
 	<dependencies>
 		<dependency>
