@@ -64,6 +64,7 @@
                         <configuration>
                             <excludes>
                                 <exclude>**/*IT.java</exclude>
+                                <exclude>**/*Live.java</exclude>
                             </excludes>
                             <includes>
                                 <include>**/*Test.java</include>
@@ -74,6 +75,7 @@
                 </plugins>
             </build>
         </profile>
+
          <profile>
             <id>int-tests</id>
             <build>
@@ -93,6 +95,34 @@
                                     </excludes>
                                     <includes>
                                         <include>**/*IT.java</include>
+                                    </includes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>live-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven.surefire.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <configuration>
+                                    <excludes>
+                                        <exclude>none</exclude>
+                                    </excludes>
+                                    <includes>
+                                        <include>**/*Live.java</include>
                                     </includes>
                                 </configuration>
                             </execution>
