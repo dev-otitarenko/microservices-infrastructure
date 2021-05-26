@@ -1,0 +1,5 @@
+# app conf
+app:
+  services:
+    dept-service: http://localhost:8801
+    emp-service: http://localhost:8802

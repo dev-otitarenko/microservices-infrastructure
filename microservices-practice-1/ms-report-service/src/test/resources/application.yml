@@ -1,10 +1,10 @@
 # app conf
 app:
   services:
-    dept-service: http://localhost:8801
-    emp-service: http://localhost:8802
+    dept-service: http://localhost:8899
+    emp-service: http://localhost:8899
 
 # Spring conf
 spring:
   application:
-    name: report-local-service
+    name: report-service
