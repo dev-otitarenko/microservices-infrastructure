@@ -1,0 +1,11 @@
+dept-service:
+  ribbon:
+    listOfServers: http://localhost:8801
+
+emp-service:
+  ribbon:
+    listOfServers: http://localhost:8802
+
+eureka:
+  client:
+    enabled: false

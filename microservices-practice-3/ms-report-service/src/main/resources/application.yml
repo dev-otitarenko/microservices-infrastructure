@@ -8,6 +8,16 @@ spring:
   application:
     name: report-service
 
+  # Default is no registration with Eureka a service registration server
+  cloud:
+#    service-registry:
+#      auto-registration:
+#        enabled: false
+#        register-management: off
+    loadbalancer:
+      ribbon:
+        enabled: false    # RibbonLoadBalancerClient deprecated. This setting uses BlockingLoadBalancerClient
+
 # Actuator params
 management:
   endpoint:
