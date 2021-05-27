@@ -1,5 +1,7 @@
 package com.maestro.app.practice.ch1.ms.reports.clients;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder;
 import com.github.tomakehurst.wiremock.common.FileSource;
 import com.github.tomakehurst.wiremock.extension.Parameters;
@@ -10,12 +12,9 @@ import com.maestro.app.practice.ch1.ms.reports.domain.DepartmentDto;
 import com.maestro.app.practice.ch1.ms.reports.domain.EmployeeDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.testcontainers.shaded.com.fasterxml.jackson.core.JsonProcessingException;
-import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StubExternalServiceResponse extends ResponseDefinitionTransformer {
     private static final String TRANSFORMER_NAME = "body-transformer";
@@ -30,7 +29,8 @@ public class StubExternalServiceResponse extends ResponseDefinitionTransformer {
     private static List<EmployeeDto> lstEmps = Arrays.asList(
             new EmployeeDto(1, "MU", "Dave", "Johnson", (float)3400),
             new EmployeeDto(2, "HR", "Tom", "Fernandez", (float)4000),
-            new EmployeeDto(3, "IT", "Michael", "Cooper", (float)5000)
+            new EmployeeDto(3, "IT", "Michael", "Douglas", (float)5000),
+            new EmployeeDto(4, "IT", "Steven", "Rodgers", (float)5100)
     );
 
     @Override
@@ -49,19 +49,31 @@ public class StubExternalServiceResponse extends ResponseDefinitionTransformer {
                 final long deptId = Long.parseLong(pairs[2]);
                 transformedJson = conv2json(lstDepts.stream().filter(d -> d.getId() == deptId).findFirst().orElse(null));
             }
+        } else if (path.startsWith("/emps/dept-")) {
+            final String[] pairs = path.split("/");
+            if (pairs.length > 3) {
+                return new ResponseDefinitionBuilder()
+                        .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                        .withStatus(HttpStatus.NOT_FOUND.value())
+                        .build();
+            }
+            final String[] pairs1 = (pairs[2]).split("-");
+            final String deptId = pairs1[1];
+
+            transformedJson = conv2json(lstEmps.stream().filter(d -> d.getDeptId().equals(deptId)).collect(Collectors.toList()));
         } else if (path.startsWith("/emp")) {
             if (path.equals("/emp") || path.equals("/emp/")) {
                 transformedJson = conv2json(lstEmps);
             } else {
                 final String[] pairs = path.split("/");
                 final long empId = Long.parseLong(pairs[2]);
+
                 transformedJson = conv2json(lstEmps.stream().filter(d -> d.getId() == empId).findFirst().orElse(null));
             }
         } else {
             return new ResponseDefinitionBuilder()
                         .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
                         .withStatus(HttpStatus.NOT_FOUND.value())
-                       // .withBody(null)
                         .build();
         }
         return new ResponseDefinitionBuilder()

@@ -1,7 +1,6 @@
 package com.maestro.app.practice.ch1.ms.reports.clients;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
-import com.maestro.app.practice.ch1.ms.reports.domain.DepartmentDto;
 import com.maestro.app.practice.ch1.ms.reports.domain.EmployeeDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,7 +33,8 @@ public class EmployeeServiceIT {
         final List<EmployeeDto> lst = Arrays.asList(
                 new EmployeeDto(1, "MU", "Dave", "Johnson", (float)3400),
                 new EmployeeDto(2, "HR", "Tom", "Fernandez", (float)4000),
-                new EmployeeDto(3, "IT", "Michael", "Cooper", (float)5000)
+                new EmployeeDto(3, "IT", "Michael", "Douglas", (float)5000),
+                new EmployeeDto(4, "IT", "Steven", "Rodgers", (float)5100)
         );
         final List<EmployeeDto> ret = empService.getAllEmployees();
         assertThat(ret).isNotNull();
@@ -45,11 +45,25 @@ public class EmployeeServiceIT {
     }
 
     @Test
-    public void canViewDepartment() {
+    public void canViewEmployee() {
         final EmployeeDto ret = empService.get(1L);
         assertThat(ret).isNotNull();
         assertThat(ret).isEqualTo(new EmployeeDto(1, "MU", "Dave", "Johnson", (float)3400));
 
         System.out.println(ret);
+    }
+
+    @Test
+    public void canViewDeptEmployees() {
+        final List<EmployeeDto> lst = Arrays.asList(
+                new EmployeeDto(3, "IT", "Michael", "Douglas", (float)5000),
+                new EmployeeDto(4, "IT", "Steven", "Rodgers", (float)5100)
+        );
+        final List<EmployeeDto> ret = empService.getDeptEmployees("IT");
+        assertThat(ret).isNotNull();
+        assertThat(ret).hasSameSizeAs(lst);
+        assertThat(ret).hasSameElementsAs(lst);
+
+        ret.forEach(System.out::println);
     }
 }
