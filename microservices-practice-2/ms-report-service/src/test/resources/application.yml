@@ -1,10 +1,14 @@
+# Server config
+server:
+  port: 9900
+
 # app conf
 app:
   clients:
-    depts: http://localhost:8801
-    emps: http://localhost:8802
+    depts: http://localhost:8899
+    emps: http://localhost:8899
 
 # Spring conf
 spring:
   application:
-    name: report-local-service
+    name: report-service

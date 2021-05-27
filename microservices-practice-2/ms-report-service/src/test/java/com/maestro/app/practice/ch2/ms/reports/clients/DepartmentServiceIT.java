@@ -1,52 +1,53 @@
 package com.maestro.app.practice.ch2.ms.reports.clients;
 
+import com.github.tomakehurst.wiremock.WireMockServer;
 import com.maestro.app.practice.ch2.ms.reports.domain.DepartmentDto;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.Comparator;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ActiveProfiles("test")
+@EnableConfigurationProperties
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { WireMockExternalServicesConfig.class })
 public class DepartmentServiceIT {
     @Autowired
-    private DepartmentService departmentService;
+    private WireMockServer mockService;
 
-    private DepartmentDto dpt = null;
-
-    @BeforeAll
-    public void setup() {
-        final List<DepartmentDto> ret = departmentService.getAllDepartments();
-        final Optional<DepartmentDto> obj = ret.stream().sorted(Comparator.comparing(DepartmentDto::getId)).findFirst();
-        dpt = obj.orElse(null);
-    }
+    @Autowired
+    private DepartmentService deptService;
 
     @Test
     public void canViewAllDepartments() {
-        final List<DepartmentDto> ret = departmentService.getAllDepartments();
+        final List<DepartmentDto> lst = Arrays.asList(
+                new DepartmentDto(1, "MU", "Management Unit"),
+                new DepartmentDto(2, "HR", "Human Resources Unit"),
+                new DepartmentDto(1, "IT", "IT Unit")
+        );
+        final List<DepartmentDto> ret = deptService.getAllDepartments();
+        assertThat(ret).isNotNull();
+        assertThat(ret).hasSameSizeAs(lst);
+        assertThat(ret).hasSameElementsAs(lst);
 
-        assertThat(ret.size()).isGreaterThanOrEqualTo(0);
         ret.forEach(System.out::println);
     }
 
     @Test
-    public void canReadAPResentDept() {
-        if (dpt != null) {
-            final DepartmentDto ret = departmentService.get(dpt.getId());
+    public void canViewDepartment() {
+        final DepartmentDto ret = deptService.get(1L);
+        assertThat(ret).isNotNull();
+        assertThat(ret).isEqualTo(new DepartmentDto(1, "MU", "Management Unit"));
 
-            assertThat(ret).isNotNull();
-            assertThat(ret).isEqualTo(dpt);
-
-            System.out.println(ret);
-        } else {
-            System.out.println(" no data in department db");
-        }
+        System.out.println(ret);
     }
 }

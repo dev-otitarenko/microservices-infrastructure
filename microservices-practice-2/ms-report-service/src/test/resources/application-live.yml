@@ -1,0 +1,5 @@
+# app conf
+app:
+  clients:
+    depts: http://localhost:8801
+    emps: http://localhost:8802

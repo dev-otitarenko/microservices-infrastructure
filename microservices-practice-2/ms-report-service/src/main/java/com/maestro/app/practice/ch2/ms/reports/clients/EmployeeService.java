@@ -27,7 +27,7 @@ public class EmployeeService {
 
     public List<EmployeeDto> getDeptEmployees(String deptId) {
         ResponseEntity<List<EmployeeDto>> ret = restTemplate.exchange(
-                String.format("%s/dept/%s", props.getEmps(), deptId),
+                String.format("%s/emps/dept-%s", props.getEmps(), deptId),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<>() {});
