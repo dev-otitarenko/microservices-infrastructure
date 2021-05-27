@@ -56,7 +56,7 @@ public class DepartmentControllerSpringBootTest {
                 .willReturn(emps);
         // when
         ResponseEntity<List<Employee>> response = restTemplate.exchange(
-                "/dept/IT",
+                "/emps/dept-IT",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<>() {});
