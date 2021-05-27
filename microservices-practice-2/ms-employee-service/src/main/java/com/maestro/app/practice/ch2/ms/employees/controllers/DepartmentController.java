@@ -16,7 +16,7 @@ import java.util.List;
 public class DepartmentController {
     private final EmployeeService empService;
 
-    @GetMapping("/dept/{deptId}")
+    @GetMapping("/emps/dept-{deptId}")
     public List<Employee> getListEmployees(@PathVariable String deptId) {
         log.info("Get the list of employees for the specific department \"{}\"", deptId);
         return empService.getDeptEmployees(deptId);
