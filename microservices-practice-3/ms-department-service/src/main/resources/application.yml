@@ -2,7 +2,6 @@
 server:
   port: 8801
 
-
 # Spring conf
 spring:
   application:
@@ -28,6 +27,5 @@ management:
 
 eureka:
   client:
-    enabled: false
     serviceUrl:
       defaultZone: ${app.eureka.server}

@@ -46,7 +46,7 @@ public class DepartmentControllerSpringBootTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void canRetrieveAllEmployees() throws Exception {
+    public void canRetrieveAllEmployees() {
         final List<Employee> emps = Arrays.asList(
                 new Employee(1, "IT", "Tom", "Fernandez", (float)4000),
                 new Employee(2, "IT", "Michael", "Cooper", (float)5000)
@@ -56,7 +56,7 @@ public class DepartmentControllerSpringBootTest {
                 .willReturn(emps);
         // when
         ResponseEntity<List<Employee>> response = restTemplate.exchange(
-                "/dept/IT",
+                "/emps/dept-IT",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<>() {});

@@ -67,7 +67,7 @@ public class DepartmentControllerSpringBootMockTest {
                 );
 
         // when
-        MockHttpServletResponse response = mvc.perform(get("/dept/IT").accept(MediaType.APPLICATION_JSON))
+        MockHttpServletResponse response = mvc.perform(get("/emps/dept-IT").accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
         // then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
