@@ -16,7 +16,7 @@ spring:
 #        register-management: off
     loadbalancer:
       ribbon:
-        enabled: false    # RibbonLoadBalancerClient deprecated. This setting uses BlockingLoadBalancerClient
+        enabled: true    # RibbonLoadBalancerClient deprecated. This setting uses BlockingLoadBalancerClient
 
 # Actuator params
 management:

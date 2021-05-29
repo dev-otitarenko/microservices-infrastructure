@@ -15,7 +15,7 @@ import java.util.List;
 
 @FeignClient(name = "emp-service", fallbackFactory = EmployeeServiceFallbackFactory.class)
 public interface EmployeeService {
-    @GetMapping(value = "/dept/{deptId}")
+    @GetMapping(value = "/emps/dept-{deptId}")
     List<EmployeeDto> getDeptEmployees(@PathVariable String deptId);
 
     @GetMapping(value = "/emp")
