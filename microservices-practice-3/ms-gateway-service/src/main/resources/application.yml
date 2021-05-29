@@ -20,5 +20,6 @@ management:
 
 eureka:
   client:
-    serviceUrl:
-      defaultZone: ${app.eureka.server}
+    enabled: false
+#    serviceUrl:
+#      defaultZone: ${app.eureka.server}
